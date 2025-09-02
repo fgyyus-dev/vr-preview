@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>VR180 Web Player</title>
+  <link rel="stylesheet" href="vr180player/vr180-player.css" />
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <style>
+    body {
+      font-family:
+        system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 1rem;
+      font-weight: normal;
+    }
+
+    main {
+      max-width: 750px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <main x-data="{ videoSrc: '' }">
+    <h1>VR Video Preview</h1>
+    <p>Original code: <a href="https://verdi.github.io/VR180-Web-Player/">https://verdi.github.io/VR180-Web-Player/</a>
+    </p>
+    <p>This page let you use your own VR180 stereo video</p>
+    <p>Click and drag to change view angle</p>
+
+    <input class="input" type="file" accept="video/*"
+      @change="videoSrc = URL.createObjectURL($event.target.files[0]); window.startVideo();" />
+    <div id="preview" class="flex items-center justify-center h-screen">
+      <video id="vr180" crossorigin="anonymous" playsinline>
+        <source x-bind:src="videoSrc" type="video/mp4" />
+      </video>
+    </div>
+    <div id="vr-container">
+      <!-- UI elements will be dynamically inserted here by JavaScript -->
+    </div>
+
+    <p><a href="https://patreon.com/fgyyus">Follow me on Patreon</a></p>
+  </main>
+  <script type="module" src="vr180player/vr180-player.js"></script>
+
+
+</body>
+
+</html>
